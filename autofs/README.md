@@ -21,11 +21,11 @@ Usage Example
 ```
 
 If you are not using an ENC, I would put this call in a 'site' folder inside of the manifests folder. So 
-the structure would be: autofs/mainfests/site and inside of the site folder you would define your
+the structure would be: <code>autofs/mainfests/site</code> and inside of the site folder you would define your
 client mounts.
 
 As an example:
-webhosts could be: autofs/manifests/site/webhosts.pp with the following content:
+webhosts could be: <code>autofs/manifests/site/webhosts.pp</code> with the following content:
 
 ```ruby
 class autofs::site::webhosts {
@@ -52,14 +52,13 @@ I would make the following call from the webhosts node manifest:
 
 ```ruby
 node "webhost0" {
-include autofs, autofs::site::techhill
+include autofs, autofs::site::webhosts
 }
 ```
 
 This would generate the following autofs configuration on webhost0:
 
-/etc/auto.master
-
+<code>/etc/auto.master</code>
 ```
 /home	 /etc/auto.home
 /-	 /etc/auto.opt
@@ -69,12 +68,12 @@ This would generate the following autofs configuration on webhost0:
 +auto.master
 ```
 
-/etc/auto.home
+<code>/etc/auto.home</code>
 ```
 *        -rw,intr,noatime     nfs0:/export/home/&
 ```
 
-/etc/auto.opt
+<code>/etc/auto.opt</code>
 ```
 /opt     -rw,intr,noatime     store0:/SSD/opt
 ```
